@@ -1,0 +1,279 @@
+.skills {
+  position: relative;
+}
+
+.pipelineBanner {
+  background: var(--surface);
+  border: 1px solid var(--border-2);
+  border-radius: 16px;
+  padding: 1.4rem 1.6rem;
+  margin-bottom: 2.5rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  position: relative;
+}
+
+@media (max-width: 900px) {
+  .pipelineBanner {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 540px) {
+  .pipelineBanner {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pipelineStep {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  position: relative;
+}
+
+.pipelineHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.stepNum {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--primary);
+  background: var(--primary-dim);
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+}
+
+.stepTitle {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.stepTools {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.controlsBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.searchWrap {
+  position: relative;
+  min-width: 260px;
+  max-width: 380px;
+  flex: 1;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  pointer-events: none;
+}
+
+.searchInput {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border-2);
+  border-radius: 100px;
+  padding: 0.6rem 1rem 0.6rem 2.5rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--text);
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+.searchInput:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 15px rgba(92, 225, 255, 0.2);
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0.3rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+}
+
+.tab {
+  padding: 0.45rem 1rem;
+  border-radius: 100px;
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--muted);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.tab:hover {
+  color: var(--text);
+}
+
+.tabCount {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 0.1rem 0.45rem;
+  border-radius: 100px;
+  background: var(--surface-2);
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+
+.tabActive {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: #FFFFFF !important;
+  font-weight: 600;
+  box-shadow: 0 2px 14px var(--primary-dim);
+}
+
+.tabActive .tabCount {
+  background: rgba(255, 255, 255, 0.25);
+  color: #FFFFFF;
+  border-color: transparent;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.card {
+  padding: 1.2rem;
+  border-radius: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  transition: all 0.25s ease;
+  cursor: default;
+}
+
+.card:hover {
+  border-color: var(--border-glow);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.cardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.skillName {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* 3-stage visual depth meter */
+.meterWrap {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.meterBlock {
+  width: 14px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--surface-3);
+  transition: background 0.3s;
+}
+
+.meterBlockFilled {
+  background: var(--primary);
+  box-shadow: 0 0 6px var(--primary);
+}
+
+.meterBlockFamiliar {
+  background: var(--secondary);
+}
+
+.meterBlockLearning {
+  background: var(--accent-orange);
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  border-top: 1px solid var(--border);
+  padding-top: 0.6rem;
+  font-size: 0.72rem;
+}
+
+.projectTag {
+  font-family: var(--font-mono);
+  color: var(--primary);
+  font-size: 0.7rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.legend {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.legendLabel {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+@media (max-width: 600px) {
+  .controlsBar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+  .searchWrap {
+    min-width: 100%;
+    max-width: 100%;
+  }
+  .tabs {
+    border-radius: 14px;
+    width: 100%;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

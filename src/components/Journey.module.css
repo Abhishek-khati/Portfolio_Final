@@ -1,0 +1,121 @@
+.journey { position: relative; }
+
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: var(--space-lg);
+  position: relative;
+}
+
+/* Vertical line connecting nodes */
+.connector {
+  position: absolute;
+  left: 23px;
+  top: 52px;
+  bottom: -24px;
+  width: 2px;
+  background: linear-gradient(to bottom, rgba(105,229,255,0.3), rgba(139,124,255,0.15));
+}
+
+/* Circle node */
+.node {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--surface-2);
+  border: 2px solid rgba(105,229,255,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 20px rgba(105,229,255,0.12);
+  margin-top: 1rem;
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.nodeNext {
+  border-color: var(--secondary);
+  background: rgba(139,124,255,0.1);
+  box-shadow: 0 0 20px rgba(139,124,255,0.2);
+}
+
+.nodeIcon { font-size: 1.3rem; line-height: 1; }
+
+/* Content card */
+.content {
+  padding: var(--space-lg) var(--space-xl);
+  margin-bottom: var(--space-xl);
+  transition: border-color var(--transition-base);
+}
+
+.content:hover { border-color: var(--border-hover); }
+
+.contentHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-bottom: 0.5rem;
+}
+
+.milestoneTitle {
+  font-size: 1.05rem;
+  color: var(--text);
+  font-weight: 700;
+}
+
+.date {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--primary);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  background: rgba(105,229,255,0.08);
+  border: 1px solid rgba(105,229,255,0.2);
+}
+
+.datePlaceholder {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.nextBadge {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--secondary);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  background: rgba(139,124,255,0.1);
+  border: 1px solid rgba(139,124,255,0.25);
+}
+
+.milestoneDetail {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.isNext .content {
+  border-color: rgba(139,124,255,0.25);
+}
+
+@media (max-width: 480px) {
+  .item { grid-template-columns: 38px 1fr; gap: var(--space-md); }
+  .node { width: 38px; height: 38px; }
+  .connector { left: 18px; }
+  .content { padding: var(--space-md); }
+}

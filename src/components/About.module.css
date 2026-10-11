@@ -1,0 +1,297 @@
+.about {
+  position: relative;
+  background: radial-gradient(circle at 10% 20%, rgba(155, 140, 255, 0.03) 0%, transparent 50%);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: clamp(2.5rem, 5vw, 5rem);
+  align-items: start;
+}
+
+/* Visual column */
+.visual {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: sticky;
+  top: calc(var(--nav-height) + 2rem);
+}
+
+.profileCard {
+  background: var(--surface);
+  border: 1px solid var(--border-2);
+  border-radius: 20px;
+  padding: 2rem 1.6rem;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+}
+
+.profileCard:hover {
+  border-color: var(--border-glow);
+}
+
+.profileCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent-green));
+}
+
+.avatarWrap {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 1.4rem;
+}
+
+.avatarRing {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px dashed var(--border-glow);
+  animation: rotateRing 20s linear infinite;
+}
+
+@keyframes rotateRing {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.avatar {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--surface-3), var(--surface-2));
+  border: 2px solid var(--border-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 35px var(--primary-dim);
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.avatarImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+
+.monogram {
+  font-family: var(--font-heading);
+  font-size: 3.6rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.name {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.25rem;
+}
+
+.handle {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--primary);
+  margin-bottom: 1.2rem;
+}
+
+.badgeRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  text-align: left;
+  border-top: 1px solid var(--border);
+  padding-top: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.badgeItem {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.82rem;
+  color: var(--text-2);
+}
+
+.badgeItem svg {
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+/* Content column */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem;
+  overflow-x: auto;
+}
+
+.tab {
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 0.6rem 1.1rem;
+  border-radius: 8px;
+  color: var(--muted);
+  background: transparent;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.tab:hover {
+  color: var(--text);
+  background: var(--surface-2);
+}
+
+.tabActive {
+  color: var(--primary) !important;
+  background: var(--primary-dim) !important;
+}
+
+.tabPanel {
+  min-height: 120px;
+}
+
+.bio {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--text-2);
+}
+
+.principleList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.principleItem {
+  display: flex;
+  gap: 0.9rem;
+  align-items: flex-start;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.principleNum {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.82rem;
+  color: var(--primary);
+  background: var(--primary-dim);
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+}
+
+.principleText {
+  font-size: 0.9rem;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+
+/* Philosophy Card */
+.philosophyCard {
+  padding: 1.4rem 1.6rem;
+  border-left: 3px solid var(--primary);
+  border-radius: 0 14px 14px 0;
+  background: var(--surface);
+  border-block: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+}
+
+.quote {
+  font-family: var(--font-heading);
+  font-size: 0.98rem;
+  font-style: italic;
+  color: var(--text);
+  line-height: 1.7;
+}
+
+/* Strengths Grid */
+.strengthsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.strengthCard {
+  padding: 1.2rem;
+  border-radius: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  display: flex;
+  gap: 0.9rem;
+  align-items: flex-start;
+  transition: all 0.25s ease;
+}
+
+.strengthCard:hover {
+  border-color: var(--border-glow);
+  transform: translateY(-2px);
+  background: var(--surface-2);
+}
+
+.strengthIcon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: var(--primary-dim);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.strengthTitle {
+  font-family: var(--font-heading);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.25rem;
+}
+
+.strengthDesc {
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .visual {
+    position: static;
+  }
+  .strengthsGrid {
+    grid-template-columns: 1fr;
+  }
+}

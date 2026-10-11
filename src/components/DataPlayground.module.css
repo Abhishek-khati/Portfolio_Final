@@ -1,0 +1,316 @@
+.playground {
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 0%, rgba(92, 225, 255, 0.04) 0%, transparent 65%);
+}
+
+.terminalWrapper {
+  background: var(--surface);
+  border: 1px solid var(--border-2);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg), 0 0 60px rgba(92, 225, 255, 0.06);
+  margin-top: 2rem;
+  transition: border-color 0.3s ease;
+}
+
+.terminalWrapper:hover {
+  border-color: var(--border-glow);
+}
+
+.terminalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1.4rem;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.windowControls {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dotRed { background: #FF5F56; }
+.dotYellow { background: #FFBD2E; }
+.dotGreen { background: #27C93F; }
+
+.terminalTitle {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.liveBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 100px;
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  background: rgba(61, 255, 192, 0.12);
+  color: var(--accent-green);
+  border: 1px solid rgba(61, 255, 192, 0.25);
+}
+
+.liveDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-green);
+  box-shadow: 0 0 8px var(--accent-green);
+  animation: pulse 1.8s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.scenarioBar {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.8rem 1.4rem;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+}
+
+.scenarioBtn {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 8px;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--border);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.scenarioBtn:hover {
+  color: var(--text);
+  border-color: var(--border-2);
+  background: var(--surface-3);
+}
+
+.scenarioBtnActive {
+  color: var(--primary) !important;
+  border-color: var(--primary) !important;
+  background: var(--primary-dim) !important;
+  font-weight: 600;
+}
+
+.terminalContent {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  min-height: 380px;
+}
+
+@media (max-width: 900px) {
+  .terminalContent {
+    grid-template-columns: 1fr;
+  }
+}
+
+.querySide {
+  padding: 1.4rem;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: var(--surface-2);
+}
+
+.queryHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.queryLabel {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+.execTime {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent-green);
+}
+
+.codeBox {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: #E2E8F0;
+  background: #0B0F19;
+  padding: 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  overflow-x: auto;
+  white-space: pre-wrap;
+  flex: 1;
+}
+
+.sqlKeyword { color: #5CE1FF; font-weight: 600; }
+.sqlFunc { color: #9B8CFF; }
+.sqlString { color: #3DFFC0; }
+.sqlComment { color: #5A6478; font-style: italic; }
+
+.execButton {
+  align-self: flex-start;
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.55rem 1.2rem;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: #FFFFFF;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.execButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(92, 225, 255, 0.3);
+}
+
+.resultSide {
+  padding: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  background: var(--surface);
+}
+
+.tableWrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.resultTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  text-align: left;
+}
+
+.resultTable th {
+  background: var(--surface-2);
+  color: var(--primary);
+  padding: 0.65rem 0.8rem;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.resultTable td {
+  padding: 0.6rem 0.8rem;
+  color: var(--text-2);
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.resultTable tr:last-child td {
+  border-bottom: none;
+}
+
+.resultTable tr:hover td {
+  background: var(--primary-dim);
+}
+
+.insightCard {
+  background: var(--primary-dim);
+  border: 1px solid var(--border-glow);
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+}
+
+.insightHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--primary);
+  margin-bottom: 0.4rem;
+}
+
+.insightText {
+  font-size: 0.82rem;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+
+.metricGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.metricBox {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.65rem 0.8rem;
+}
+
+.metricVal {
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--primary);
+  display: block;
+}
+
+.metricLbl {
+  font-size: 0.7rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 640px) {
+  .metricGrid {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+  .querySide,
+  .resultSide {
+    padding: 1rem;
+  }
+  .terminalHeader {
+    padding: 0.75rem 1rem;
+  }
+  .scenarioBar {
+    padding: 0.6rem 1rem;
+  }
+}
