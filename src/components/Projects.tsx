@@ -174,7 +174,7 @@ function CaseStudyModal({
                       className={`${styles.galleryTab} ${activeImageIdx === idx ? styles.galleryTabActive : ''}`}
                       onClick={() => setActiveImageIdx(idx)}
                     >
-                      <span>{`Page ${idx + 1}`}</span>
+                      <span>{img.tabLabel || `Page ${idx + 1}`}</span>
                     </button>
                   ))}
                 </div>
@@ -267,8 +267,10 @@ export default function Projects() {
   const [selected, setSelected] = useState<(typeof projects)[0] | null>(null)
   const [activeCategory, setActiveCategory] = useState('All')
 
-  // Featured project (first one)
-  const featured = projects[0]
+  // Featured projects
+  const featuredList = useMemo(() => projects.filter(p => p.featured), [])
+  const [activeFeaturedId, setActiveFeaturedId] = useState<string>(featuredList[0]?.id || projects[0].id)
+  const featured = featuredList.find(p => p.id === activeFeaturedId) || featuredList[0] || projects[0]
 
   // Filter categories
   const categories = ['All', 'Data Analytics', 'Financial Analytics', 'AI / ML', 'Web3 / Security']
@@ -279,7 +281,14 @@ export default function Projects() {
       return projects.filter(p => p.category.includes('Analytics') || p.category.includes('Data') || p.category.includes('SQL'))
     }
     if (activeCategory === 'Financial Analytics') {
-      return projects.filter(p => p.category.includes('Financial') || p.category.includes('Market'))
+      return projects.filter(
+        p =>
+          p.category.includes('Financial') ||
+          p.category.includes('Market') ||
+          p.category.includes('Commodities') ||
+          p.category.includes('Quantitative') ||
+          p.category.includes('Forex')
+      )
     }
     if (activeCategory === 'AI / ML') {
       return projects.filter(p => p.category.includes('AI') || p.category.includes('ML'))
@@ -316,26 +325,51 @@ export default function Projects() {
           >
             <div className={styles.spotlightAccent} />
             <div>
-              <div className={styles.featuredBadge}>
-                <Sparkles size={13} />
-                <span>Featured Case Study</span>
+              <div className={styles.featuredHeaderRow}>
+                <div className={styles.featuredBadge}>
+                  <Sparkles size={13} />
+                  <span>Featured Case Study</span>
+                </div>
+                {featuredList.length > 1 && (
+                  <div className={styles.featuredSwitcher}>
+                    {featuredList.map(f => {
+                      const label =
+                        f.id === 'silver-analytics'
+                          ? '📈 Silver Forecasting'
+                          : f.id === 'forex-signal'
+                          ? '🤖 Forex AI Suite'
+                          : f.id === 'convexity-agent'
+                          ? '🏛️ BondIQ Fixed Income'
+                          : f.id === 'credit-risk-ifrs9'
+                          ? '💳 Credit Risk (IFRS 9)'
+                          : f.name
+                      return (
+                        <button
+                          key={f.id}
+                          className={`${styles.featuredSwitchBtn} ${f.id === featured.id ? styles.featuredSwitchBtnActive : ''}`}
+                          onClick={() => setActiveFeaturedId(f.id)}
+                        >
+                          {label}
+                        </button>
+                      )
+                    })}
+                  </div>
+                )}
               </div>
               <h3 className={styles.spotlightTitle}>{featured.name}</h3>
               <p className={styles.spotlightTagline}>{featured.tagline}</p>
               <p className={styles.spotlightSummary}>{featured.summary}</p>
 
-              <div className={styles.spotlightMetrics}>
-                {(featured.spotlightMetrics || [
-                  { val: '3 Dashboards', lbl: 'Full Suite Pages' },
-                  { val: 'IFRS 9 ECL', lbl: 'Risk Staging' },
-                  { val: '4 Scenarios', lbl: 'Stress Tests' },
-                ]).map((m, idx) => (
-                  <div key={idx} className={styles.spotlightMetricBox}>
-                    <span className={styles.spotlightMetricVal}>{m.val}</span>
-                    <span className={styles.spotlightMetricLbl}>{m.lbl}</span>
-                  </div>
-                ))}
-              </div>
+              {featured.spotlightMetrics && featured.spotlightMetrics.length > 0 && (
+                <div className={styles.spotlightMetrics}>
+                  {featured.spotlightMetrics.map((m, idx) => (
+                    <div key={idx} className={styles.spotlightMetricBox}>
+                      <span className={styles.spotlightMetricVal}>{m.val}</span>
+                      <span className={styles.spotlightMetricLbl}>{m.lbl}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
 
               <div className={styles.spotlightActions}>
                 <button className="btn btn-primary" onClick={() => setSelected(featured)}>
@@ -363,23 +397,22 @@ export default function Projects() {
                   <img src={featured.image} alt={featured.name} className={styles.spotlightImg} />
                 </div>
               )}
-              <div className={styles.spotlightVisualTitle}>
-                <Layers size={15} />
-                <span>Pipeline Architecture</span>
-              </div>
-              <div className={styles.spotlightList}>
-                {(featured.spotlightArchitecture || [
-                  'Star-schema relational model with normalized fact and dimension tables',
-                  'Dynamic DAX measures calculating PD, LGD, EAD and Expected Credit Loss',
-                  'Vintage delinquency curves & DPD roll-rate bucketing (Current to 120+ DPD)',
-                  'Cash flow waterfall attribution & macroeconomic scenario sensitivity models',
-                ]).map((item, idx) => (
-                  <div key={idx} className={styles.spotlightListItem}>
-                    <span className={styles.spotlightBullet} />
-                    <span>{item}</span>
+              {featured.spotlightArchitecture && featured.spotlightArchitecture.length > 0 && (
+                <>
+                  <div className={styles.spotlightVisualTitle}>
+                    <Layers size={15} />
+                    <span>Pipeline Architecture</span>
                   </div>
-                ))}
-              </div>
+                  <div className={styles.spotlightList}>
+                    {featured.spotlightArchitecture.map((item, idx) => (
+                      <div key={idx} className={styles.spotlightListItem}>
+                        <span className={styles.spotlightBullet} />
+                        <span>{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </>
+              )}
             </div>
           </motion.div>
         )}

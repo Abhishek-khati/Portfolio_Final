@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Play, Terminal, Database, Sparkles, TrendingUp, ShieldCheck } from 'lucide-react'
+import { Play, Terminal, Database, Sparkles, TrendingUp, ShieldCheck, Search } from 'lucide-react'
 import styles from './DataPlayground.module.css'
 
 interface Scenario {
@@ -17,6 +17,62 @@ interface Scenario {
 }
 
 const SCENARIOS: Scenario[] = [
+  {
+    id: 'sql-mystery',
+    title: 'SQL Murder Mystery: Case Solved',
+    icon: Search,
+    projectRef: 'Forensic SQL Investigation & Database Detective Challenge',
+    query: `-- 🔍 SQL Murder Mystery: Finding the Hitman & the True Mastermind
+WITH crime_witnesses AS (
+    SELECT id, name, address_street_name
+    FROM person
+    WHERE (address_street_name = 'Northwestern Dr' AND address_number = (SELECT MAX(address_number) FROM person WHERE address_street_name = 'Northwestern Dr'))
+       OR (address_street_name = 'Franklin Ave' AND name LIKE 'Annabel%')
+),
+suspect_hitman AS (
+    SELECT p.id, p.name, dl.plate_number, g.membership_status
+    FROM get_fit_now_member g
+    JOIN get_fit_now_check_in ci ON g.id = ci.membership_id
+    JOIN person p ON g.person_id = p.id
+    JOIN drivers_license dl ON p.license_id = dl.id
+    WHERE g.membership_status = 'gold'
+      AND g.id LIKE '48Z%'
+      AND ci.check_in_date = 20180109
+      AND dl.plate_number LIKE '%H42W%'
+)
+-- Jeremy Bowers interview: "Hired by a wealthy woman (red hair, Tesla Model S, 3x SQL Symphony attendee Dec 2017)"
+SELECT 
+    p.name AS criminal_mastermind,
+    dl.height,
+    dl.hair_color,
+    dl.car_make || ' ' || dl.car_model AS vehicle,
+    f.event_name,
+    COUNT(f.person_id) AS event_attendance_count,
+    '$' || printf('%,d', inc.annual_income) AS annual_income
+FROM person p
+JOIN drivers_license dl ON p.license_id = dl.id
+JOIN facebook_event_checkin f ON p.id = f.person_id
+JOIN income inc ON p.ssn = inc.ssn
+WHERE dl.hair_color = 'red'
+  AND dl.gender = 'female'
+  AND dl.car_model = 'Model S'
+  AND f.event_name = 'SQL Symphony Concert'
+  AND f.date BETWEEN 20171201 AND 20171231
+GROUP BY p.id
+HAVING COUNT(f.person_id) = 3;`,
+    execTime: '9ms (Forensic SQLite Query Execution)',
+    columns: ['Criminal Mastermind', 'Height', 'Hair Color', 'Vehicle', 'Event Name', 'Attendances', 'Annual Income'],
+    rows: [
+      ['Miranda Priestly', '65"', 'red', 'Tesla Model S', 'SQL Symphony Concert', 3, '$310,000'],
+    ],
+    metrics: [
+      { label: 'Hitman Identified', value: 'Jeremy Bowers' },
+      { label: 'True Mastermind', value: 'Miranda Priestly' },
+      { label: 'Query Complexity', value: '5-Table Join + CTE' },
+    ],
+    insight:
+      'Case Closed! Solved via multi-table relational joins, subqueries, and grouping across gym check-ins, drivers licenses, interview transcripts, and concert events. Demonstrates strong investigative deduction, complex SQL filtering, and zero-loss schema navigation.',
+  },
   {
     id: 'ifrs9',
     title: 'IFRS 9 Credit Risk Engine',
@@ -123,7 +179,7 @@ ORDER BY release_year DESC, total_titles DESC;`,
     id: 'silver',
     title: 'Market Volatility Scan',
     icon: TrendingUp,
-    projectRef: 'Silver Market Analytics Dashboard',
+    projectRef: 'Silver Price Forecasting & Commodity Market Intelligence Suite',
     query: `-- 30-Day Rolling Volatility & Max Drawdown Analysis
 SELECT 
     date_trunc('month', trade_date)::date AS trade_month,

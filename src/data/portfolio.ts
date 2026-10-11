@@ -14,7 +14,7 @@ export const profile = {
   location: 'Haldwani, Uttarakhand, India',
   phone: '+91 94565 03217',
   whatsapp: 'https://wa.me/919456503217?text=Hi%20Abhishek%2C%20saw%20your%20portfolio%20and%20wanted%20to%20connect!',
-  about: `I am a BCA final-year student at MIET Kumaon (Kumaun University) developing practical solutions in data analytics and intelligent software systems. I build automated workflows using SQL, Python, Excel, and Power BI for cleaning datasets, exploratory analysis, and business dashboards. My approach is rooted in writing efficient SQL queries (CTEs, Window Functions, Subqueries) and applying statistical methods to convert raw numbers into actionable business insights.`,
+  about: `I am a BCA final-year student at MIET Kumaon (Kumaun University) developing practical solutions in data analytics and intelligent software systems. Driven by an intense curiosity to grow in tech, I love deep-dive problem-solving—from cracking complex relational database challenges like the famous SQL Murder Mystery to engineering end-to-end predictive pipelines with Python, Streamlit, and modern ML. My approach is rooted in writing efficient, production-grade SQL (CTEs, Window Functions, Multi-table Joins) and applying statistical modeling to transform raw numbers into actionable business intelligence.`,
   // Set to true when you are actively seeking opportunities
   availableForWork: true,
   availabilityLabel: 'Open to Data Analyst & AI/ML Opportunities',
@@ -34,6 +34,7 @@ export const skills = {
     { name: 'SQL', level: 'working' },
     { name: 'PostgreSQL', level: 'working' },
     { name: 'MySQL', level: 'working' },
+    { name: 'SQLite', level: 'working' },
     { name: 'Excel', level: 'working' },
     { name: 'Power BI', level: 'working' },
     { name: 'DAX', level: 'familiar' },
@@ -44,6 +45,8 @@ export const skills = {
     { name: 'Python', level: 'working' },
     { name: 'Pandas', level: 'working' },
     { name: 'NumPy', level: 'working' },
+    { name: 'SQLAlchemy', level: 'working' },
+    { name: 'Plotly', level: 'working' },
     { name: 'Matplotlib', level: 'working' },
     { name: 'Seaborn', level: 'familiar' },
   ],
@@ -80,6 +83,7 @@ export interface ProjectImage {
   title: string
   src: string
   desc: string
+  tabLabel?: string
 }
 
 export interface Project {
@@ -129,16 +133,19 @@ export const projects: Project[] = [
     image: '/projects/credit-risk-p1.png',
     images: [
       {
+        tabLabel: 'Portfolio Overview',
         title: 'Dashboard Page 1: Auto Loan Securitisation & Portfolio Performance',
         src: '/projects/credit-risk-p1.png',
         desc: 'Comprehensive portfolio overview tracking 500 active loans, ₹546M total loan volume, DPD delinquency buckets (Current to 120+ DPD), cumulative net loss curves across vintages (2021-Q1 to 2022-Q1), India state loan distribution, vehicle segments, and pool run-off trends.',
       },
       {
+        tabLabel: 'IFRS 9 ECL Staging',
         title: 'Dashboard Page 2: IFRS 9 Expected Credit Loss (ECL) & Staging Analysis',
         src: '/projects/credit-risk-p2.png',
         desc: 'Regulatory IFRS 9 staging breakdown: Stage 1 ($272.93M exposure), Stage 2 ($27.15M), and Stage 3 ($17.70M). Features an interactive Risk Heatmap cross-tabulating PD vs LGD bands, CIBIL score tier provisions, vehicle collateral exposure, and high-risk state concentration.',
       },
       {
+        tabLabel: 'Macro Stress Tests',
         title: 'Dashboard Page 3: Stress Testing, Cash Flow Waterfall & Sensitivity Analysis',
         src: '/projects/credit-risk-p3.png',
         desc: 'Macroeconomic scenario comparison across Base, Moderate, Severe, and Extreme stress conditions. Dynamic cash-flow waterfall tracking BOP ($6.19bn) to EOP ($6.01bn), recovery efficiency (129.12%), and sensitivity analysis highlighting marginal ECL shocks to +10%/+20% shifts in PD, LGD, and EAD.',
@@ -154,6 +161,178 @@ export const projects: Project[] = [
       'Dynamic DAX measures calculating PD, LGD, EAD and Expected Credit Loss',
       'Vintage delinquency curves & DPD roll-rate bucketing (Current to 120+ DPD)',
       'Cash flow waterfall attribution & macroeconomic scenario sensitivity models',
+    ],
+  },
+  {
+    id: 'silver-analytics',
+    name: 'Silver Price Forecasting & Commodity Market Intelligence Suite',
+    category: 'Commodities Analytics · Power BI · ML',
+    tagline: 'Star-schema data architecture, 4-tier Power BI dashboard suite, and ensemble ML forecasting.',
+    summary:
+      'Developed an enterprise-grade commodity intelligence and forecasting suite in Power BI and Python tracking 25+ years of silver market dynamics, quantitative volatility, multi-model ML forecasts (0.53 RMSE), and macroeconomic demand fundamentals across Solar PV and EVs.',
+    description: `Engineered an end-to-end commodity market analytics platform and forecasting suite built on a production star-schema data model in Microsoft Power BI and Python.
+
+Centralized DimDate integrates daily OHLCV price histories (2000–2025), COMEX & LBMA physical supply/demand fundamentals, futures basis term structures, and weekly CFTC Commitments of Traders (COT) institutional flows.
+
+The suite features four specialized analytical pages:
+1. Silver Price Analytics: Monitors RSI 14 momentum (59.07), intraday range spikes ($1.01K sum), VWAP ($118.90K), 487M trading volume, and SMA20/SMA60 trendlines.
+2. Risk Analytics: Measures 20-day rolling volatility (0.26), portfolio Sharpe ratio (0.22), maximum drawdown (-0.76), volatility volume mapping, and drawdown waterfall attributions.
+3. Model Forecast Comparison: Benchmarks Baseline SMA, Random Forest, and XGBoost against an Ensemble model (XGB + RF + SMA) achieving lowest RMSE (0.53), lowest MAE (0.42), lowest MAPE (1.55%), and 52.47% directional accuracy.
+4. Macro & Sentiment Intelligence: Correlates Gold vs Silver ratios, news sentiment scores (1.19), annual supply/demand balances, exponential industrial green-energy demand from Solar Panels (~120 MOz) and Electric Vehicles (~30 MOz), and CFTC commercial net hedging.`,
+    technologies: [
+      'Microsoft Power BI',
+      'DAX',
+      'Power Query',
+      'Python',
+      'XGBoost',
+      'Random Forest',
+      'SQL',
+      'Star-Schema Modeling',
+      'Financial Time Series',
+    ],
+    highlights: [
+      'Architected Star-Schema Model: Central DimDate dimension connected via one-to-many relationships across 6 fact and domain tables',
+      '4-Page Power BI Suite: Dedicated dashboards for Price Analytics, Risk Analytics, Forecast Comparison, and Macro & Sentiment Intelligence',
+      'Ensemble ML Forecasting: Developed multi-model framework (XGBoost + RF + SMA) delivering 0.53 RMSE, 0.42 MAE, and 52.47% directional accuracy',
+      'Quantitative Risk Framework: Evaluated 20D rolling volatility (0.26), Sharpe ratio (0.22), maximum drawdown (-0.76), and waterfall loss attribution',
+      'Technical Market Signals: Visualized RSI 14 (59.07 gauge), Intraday Ranges ($1.01K sum), VWAP ($118.90K), and SMA20/SMA60 crossovers',
+      'Macro & Industrial Fundamentals: Tracked Gold/Silver ratios, ETF holdings, and exponential clean-energy demand from Solar PV (~120 MOz) and EVs (~30 MOz)',
+    ],
+    github: 'https://github.com/Abhishek-khati',
+    demo: '',
+    presentation: '',
+    featured: true,
+    color: '#94A3B8',
+    image: '/projects/silver-price-analytics.png',
+    images: [
+      {
+        tabLabel: 'Silver Price Analytics',
+        title: 'Dashboard Page 1: Silver Price Analytics & Technical Indicators',
+        src: '/projects/silver-price-analytics.png',
+        desc: 'Interactive price monitoring dashboard featuring Sum of VWAP (118.90K), 487M volume, Latest Close ($36.97), RSI 14 momentum gauge (59.07), SMA20/SMA60 trendlines (2000–2025), intraday range spikes, and granular historical price summary table.',
+      },
+      {
+        tabLabel: 'Risk Analytics',
+        title: 'Dashboard Page 2: Risk Analytics & Volatility Profiles',
+        src: '/projects/silver-risk-analytics.png',
+        desc: 'Institutional risk dashboard measuring 20-day rolling volatility (0.26), portfolio Sharpe ratio (0.22), maximum drawdown (-0.76), risk-return scatter plot, historical volatility mapping against trading volume, return percentage distribution, and cumulative drawdown waterfall.',
+      },
+      {
+        tabLabel: 'Forecast Comparison',
+        title: 'Dashboard Page 3: Model Forecast Comparison & Evaluation',
+        src: '/projects/silver-forecast-comparison.png',
+        desc: 'Machine learning benchmarking suite evaluating Ensemble (XGBoost + Random Forest + SMA) vs standalone models. Showcases lowest RMSE (0.53), lowest MAE (0.42), lowest MAPE (1.55%), highest directional accuracy (52.47%), actual vs forecast time-series trajectories, and full model scorecards.',
+      },
+      {
+        tabLabel: 'Macro and Sentiment',
+        title: 'Dashboard Page 4: Macroeconomic Drivers & Market Sentiment',
+        src: '/projects/silver-macro-sentiment.png',
+        desc: 'Cross-asset macro intelligence tracking Gold vs Silver price dynamics, News Sentiment gauge (1.19), physical ETF holdings, annual supply vs demand balance, exponential industrial demand from Solar PV (~120 MOz) and EVs (~30 MOz), and weekly CFTC Commitments of Traders (COT) positioning.',
+      },
+      {
+        tabLabel: 'Data Architecture',
+        title: 'Data Architecture: Power BI Relational Star-Schema Model',
+        src: '/projects/silver-forecast-model.png',
+        desc: 'Production-grade dimensional data model featuring a centralized DimDate dimension connected via one-to-many relationships across 6 fact and domain tables: Daily OHLCV, Macroeconomic indicators, Supply/Demand balances, Futures contracts, Weekly sentiment, Forecast comparisons, and Model performance scores.',
+      },
+    ],
+    spotlightMetrics: [
+      { val: '4 Dashboards', lbl: 'Full Suite Pages' },
+      { val: '0.53 RMSE', lbl: 'Ensemble ML Model' },
+      { val: '7 Tables', lbl: 'Star-Schema Architecture' },
+    ],
+    spotlightArchitecture: [
+      'Star-schema relational model with DimDate filtering 6 normalized fact tables',
+      'Multi-model ML competition comparing XGBoost, Random Forest, and SMA Ensemble',
+      'Dynamic DAX measures calculating 20D rolling volatility, Sharpe Ratio, and Drawdowns',
+      'Macro correlation analysis tracking DXY, Gold/Silver ratio, Fed Funds, and CFTC COT flows',
+    ],
+  },
+  {
+    id: 'forex-signal',
+    name: 'Forex Trading Signal AI Agent & Multi-Tier Analytics Suite',
+    category: 'Quantitative Finance · ML · Power BI',
+    tagline: 'Multi-currency signal generation, technical indicator pipeline, ML classifiers, and institutional risk management.',
+    summary:
+      'Developed an end-to-end algorithmic Forex intelligence platform and 5-page Power BI dashboard suite tracking 2,000+ signals across 5 currency pairs, technical trend indicators (Ichimoku, Bollinger, MACD), Random Forest & XGBoost ML classifiers (0.92 F1), and institutional risk metrics (VaR 95%, CVaR, Kelly sizing).',
+    description: `Engineered an advanced algorithmic Forex trading intelligence suite combining automated technical indicator calculation, supervised machine-learning signal classification, and an institutional quantitative risk management framework.
+
+The platform processes high-frequency price feeds across 5 major currency pairs (AUDUSD, EURUSD, GBPUSD, USDINR, USDJPY) to generate, validate, and attribute trading signals.
+
+The suite features 5 comprehensive Power BI dashboard pages:
+1. Signal Overview: High-level executive cockpit monitoring 2K total signals, 150 completed trades, latest close ($165.04), average RSI (51.93), and average ATR (0.43). Features a signal distribution donut breakdown (553 Strong Buy [27.6%], 519 Buy [26.2%], 397 Strong Sell [20.0%], 352 Sell [17.8%]), historical candlestick trends, real-time signal classification tables, and multi-currency price comparison trajectories.
+2. Trading Performance & Technical Indicators: Deep dive into technical indicator divergence and momentum filters including Dual SMA trends (SMA_Long vs SMA_Short), Bollinger Bands envelope (%B band width), Ichimoku Cloud (Kijun, Tenkan, Chikou, Senkou Span), MACD histogram momentum, and 14-period RSI smoothing.
+3. Quantitative Risk Management: Rigorous institutional risk framework quantifying Value at Risk (VaR 95% at -$492.39), Conditional VaR (CVaR 95% Expected Shortfall at -$492.39), maximum drawdown (-0.04 / -4%), portfolio Sharpe Ratio (-14.53), Calmar Ratio (-1.18K), and Sortino downside deviation. Incorporates fractional Kelly Criterion and Half-Kelly position sizing against win rates and payoff ratios.
+4. Currency Pair Analysis: Granular cross-pair comparative analytics evaluating average ATR volatility (USDJPY ~700 vs EURUSD/AUDUSD), volume profiles (USDJPY 2.2M, GBPUSD 2.1M, USDINR 2.1M), cross-pair price correlations, and cumulative PnL attribution.
+5. ML / RL Model Performance: Supervised learning benchmark comparing Random Forest and XGBoost classifiers. Evaluates precision (1.05), recall (0.85), accuracy (1.01), and F1-score (0.92). Features Gini feature importance ranking identifying 5-day rolling volatility (vol_5d, ~0.14) and MACD Histogram (~0.12) as primary predictive drivers over 10-day returns, Bollinger %B, and RSI 14.`,
+    technologies: [
+      'Python',
+      'Pandas',
+      'NumPy',
+      'Scikit-learn',
+      'Random Forest',
+      'XGBoost',
+      'Microsoft Power BI',
+      'DAX',
+      'Power Query',
+      'Financial Risk Modeling',
+    ],
+    highlights: [
+      '5-Page Power BI Suite: Dedicated dashboards for Signal Overview, Trading Performance, Risk Management, Currency Pair Analysis, and ML Performance',
+      '2,000+ Signals Generated: Categorized into Strong Buy (27.6%), Buy (26.2%), Strong Sell (20.0%), and Sell (17.8%) across 5 currency pairs',
+      'Institutional Risk Modeling: Quantified VaR 95%, Conditional VaR (CVaR), Max Drawdown (-4%), Sharpe, Calmar, and Sortino ratios',
+      'Technical Indicator Engine: Integrated Bollinger Bands, Ichimoku Cloud, MACD Histograms, Dual SMAs, and 14-period RSI momentum',
+      'Machine Learning Benchmarking: Trained Random Forest and XGBoost models achieving 0.92 F1-score with Gini feature importance attribution',
+      'Optimal Position Sizing: Modeled Kelly Criterion & Half-Kelly sizing formulas against historical win rates and payoff ratios',
+    ],
+    github: 'https://github.com/Abhishek-khati',
+    demo: '',
+    presentation: '',
+    featured: true,
+    color: '#FF6B6B',
+    image: '/projects/forex-signal-overview.png',
+    images: [
+      {
+        tabLabel: 'Signal Overview',
+        title: 'Dashboard Page 1: Forex Signal Overview & Executive Cockpit',
+        src: '/projects/forex-signal-overview.png',
+        desc: 'Executive trading cockpit tracking 2,000 total signals, 5 currency pairs, 150 executed trades, latest close ($165.04), average RSI (51.93), signal distribution breakdown (Strong Buy, Buy, Strong Sell, Sell), candlestick trend, and multi-pair historical price trajectories.',
+      },
+      {
+        tabLabel: 'Trading Performance',
+        title: 'Dashboard Page 2: Technical Indicators & Trading Performance',
+        src: '/projects/forex-trading-performance.png',
+        desc: 'Comprehensive technical indicator monitor displaying moving average trends (SMA_Long vs SMA_Short), Bollinger Bands envelope (%B), Ichimoku Cloud (Kijun, Tenkan, Chikou), MACD histogram momentum, and RSI 14 trends across historical dates.',
+      },
+      {
+        tabLabel: 'Risk Management',
+        title: 'Dashboard Page 3: Quantitative Risk Management & Value at Risk',
+        src: '/projects/forex-risk-management.png',
+        desc: 'Institutional risk dashboard calculating Value at Risk (VaR 95% at -$492.39), Conditional VaR (CVaR / Expected Shortfall), maximum drawdown (-0.04), risk ratios (Sharpe -14.53, Calmar, Sortino), drawdown USD/percentage analysis, and Kelly Criterion position sizing.',
+      },
+      {
+        tabLabel: 'Currency Pair Analysis',
+        title: 'Dashboard Page 4: Cross-Currency Pair Analysis & Volatility',
+        src: '/projects/forex-currency-analysis.png',
+        desc: 'Cross-pair comparative analytics evaluating average ATR volatility by pair (USDJPY ~700, USDINR ~150, GBPUSD, AUDUSD, EURUSD), trading volume comparison (2M+ volume each), price correlations, and cumulative PnL attribution.',
+      },
+      {
+        tabLabel: 'ML Model Performance',
+        title: 'Dashboard Page 5: Machine Learning Signal Model Performance',
+        src: '/projects/forex-ml-performance.png',
+        desc: 'Supervised machine learning evaluation benchmarking Random Forest and XGBoost classifiers. Displays precision (1.05), recall (0.85), F1-score (0.92), model comparison bar charts, and feature importance rankings with 5-day volatility (vol_5d) and MACD_Hist as top predictive drivers.',
+      },
+    ],
+    spotlightMetrics: [
+      { val: '5 Dashboards', lbl: 'Full Suite Pages' },
+      { val: '2,000+', lbl: 'Generated Signals' },
+      { val: '0.92 F1', lbl: 'ML Model Score' },
+    ],
+    spotlightArchitecture: [
+      'Multi-currency data pipeline tracking 5 major FX pairs (AUDUSD, EURUSD, GBPUSD, USDINR, USDJPY)',
+      'Technical indicator engine computing Bollinger Bands, Ichimoku Cloud, MACD, and 14D RSI',
+      'Supervised ML classification pipeline (Random Forest & XGBoost) with 0.92 F1-score',
+      'Quantitative risk framework tracking VaR 95%, CVaR, Drawdown, and Kelly position sizing',
     ],
   },
   {
@@ -174,7 +353,7 @@ export const projects: Project[] = [
     github: 'https://github.com/Abhishek-khati',
     demo: '',
     presentation: '',
-    featured: true,
+    featured: false,
     color: '#5CE1FF',
     image: '/projects/customer-shopping.png',
     spotlightMetrics: [
@@ -209,7 +388,7 @@ export const projects: Project[] = [
     github: 'https://github.com/Abhishek-khati',
     demo: '',
     presentation: '',
-    featured: true,
+    featured: false,
     color: '#FF4D6D',
     image: '/projects/hr-analytics-dashboard.png',
   },
@@ -233,7 +412,7 @@ export const projects: Project[] = [
     github: 'https://github.com/Abhishek-khati',
     demo: '',
     presentation: '',
-    featured: true,
+    featured: false,
     color: '#A855F7',
     image: '/projects/blinkit-zepto-dashboard.png',
   },
@@ -258,7 +437,7 @@ export const projects: Project[] = [
     github: 'https://github.com/Abhishek-khati',
     demo: '',
     presentation: '',
-    featured: true,
+    featured: false,
     color: '#E50914',
     image: '/projects/netflix-sql.png',
   },
@@ -282,7 +461,7 @@ export const projects: Project[] = [
     github: 'https://github.com/Abhishek-khati',
     demo: '',
     presentation: '',
-    featured: true,
+    featured: false,
     color: '#1DB954',
     image: '/projects/spotify-sql.png',
   },
@@ -307,7 +486,7 @@ export const projects: Project[] = [
     github: 'https://github.com/Abhishek-khati',
     demo: '',
     presentation: '',
-    featured: true,
+    featured: false,
     color: '#F59E0B',
     image: '/projects/retail-sales-sql.png',
   },
@@ -332,7 +511,7 @@ The project demonstrates how static analysis and LLM reasoning can work together
     github: 'https://github.com/Abhishek-khati',
     demo: 'https://chainshieldai-client.vercel.app/',
     presentation: '',
-    featured: true,
+    featured: false,
     color: '#8B7CFF',
     image: '/hackathon/hackindia-pitch.png',
     images: [
@@ -361,68 +540,89 @@ The project demonstrates how static analysis and LLM reasoning can work together
   },
   {
     id: 'convexity-agent',
-    name: 'Convexity Sensitivity AI Agent',
-    category: 'Financial Analytics',
-    tagline: 'Fixed-income portfolio risk through AI-assisted scenario analysis.',
+    name: 'BondIQ — Convexity Sensitivity AI Agent',
+    category: 'Fixed Income · Quant Risk · Streamlit & AI',
+    tagline: 'AI-powered fixed income risk analytics, yield-curve shift scenarios, and predictive portfolio insights.',
     summary:
-      'An analytical project exploring fixed-income portfolio sensitivity, yield-curve changes, and Monte Carlo risk scenarios with an interactive Streamlit dashboard.',
-    description: `This project models the sensitivity of fixed-income portfolios to yield-curve shifts. It uses Python for calculations, LangChain for AI-assisted analysis commentary, and Streamlit to present an interactive risk exploration interface.`,
-    technologies: ['Python', 'Pandas', 'LangChain', 'Streamlit', 'Excel'],
-    highlights: [
-      'Portfolio risk analysis',
-      'Yield-curve scenario exploration',
-      'Monte Carlo simulations',
-      'Interactive analytical dashboard',
+      'Engineered an institutional fixed-income risk analytics platform and hybrid AI agent in Python 3.11 and Streamlit evaluating a ₹32.06M bond portfolio across modified duration (4.203), DV01 (₹12,839.10), non-linear convexity scenarios (-200 to +200 bps), multi-currency risk, and a Grok LLM natural-language intelligence assistant.',
+    description: `BondIQ is an enterprise-grade quantitative fixed-income risk intelligence platform and AI agent engineered with Python 3.11, Streamlit, and Plotly, powered by a relational SQLite database via SQLAlchemy ORM.
+
+Designed to assist fixed-income portfolio managers and risk officers, BondIQ computes real-time bond sensitivities, yield curve shock simulations, sector spread analytics, and predictive risk scoring across a ₹32.06M institutional bond portfolio.
+
+The platform includes five specialized analytical views:
+1. Home Dashboard & Executive Summary: Tracks portfolio market value (₹32,059,346), Modified Duration (4.203), Effective Duration (4.204), and portfolio DV01 (₹12,839.10 per basis point shift).
+2. Portfolio Analysis & Convexity Sensitivity: Models asymmetrical price movements under parallel yield curve shocks from -200 bps (+₹2.98M / +9.29%) down to +200 bps (-₹2.41M / -7.53%), capturing the protective positive convexity curvature.
+3. Risk Analysis & Exposure Attribution: Visualizes multi-currency allocations (INR 78%, USD 10.7%, GBP 4.66%, EUR 4.28%, AUD 2.38%, JPY 0.01%) and credit risk rating distributions across Energy, Infrastructure, Steel, and NBFC sectors with Option-Adjusted Spreads (94 to 207 bps).
+4. AI Assistant (Hybrid Grok LLM + Rule-Based): Conversational intelligence layer combining Grok AI with structured SQLite database querying via SQLAlchemy. Allows natural-language prompts like "What is portfolio duration?", "Which sector has highest risk?", and "Analyze convexity sensitivity" with automatic rule-based fallbacks.
+5. Prediction Engine & Risk Scoring: Calculates predictive portfolio outcomes for ±50 bps shocks and synthesizes multi-factor portfolio health into an intuitive 42/100 risk score.`,
+    technologies: [
+      'Python 3.11',
+      'Streamlit',
+      'Plotly',
+      'Pandas',
+      'NumPy',
+      'SQLite',
+      'SQLAlchemy',
+      'Grok AI / LLM',
+      'Financial Risk Modeling',
     ],
-    github: 'EDITABLE_GITHUB_URL',
-    demo: 'EDITABLE_DEMO_URL',
+    highlights: [
+      'Interactive Streamlit Interface: Built with Streamlit & Plotly featuring dark-mode quantitative dashboards and real-time scenario modeling',
+      'Convexity & DV01 Engine: Computes Modified Duration (4.203), Effective Duration (4.204), Total DV01 (₹12,839.10), and non-linear yield curve shifts (-200 to +200 bps)',
+      'Hybrid AI Assistant: Integrated Grok LLM with rule-based fallback and SQLAlchemy ORM database queries for natural language portfolio Q&A',
+      'Credit & Spread Profiling: Evaluated Option-Adjusted Spreads (OAS 94–207 bps) across AAA/AA/A corporate bonds in Energy, Steel, Infrastructure, and NBFC sectors',
+      'Multi-Currency Exposure: Decomposed FX concentration across INR (78%), USD (10.7%), GBP, EUR, AUD, and JPY',
+      'Predictive Risk Scoring: Synthesized duration, spread volatility, and scenario loss limits into a standardized 42/100 risk score',
+    ],
+    github: 'https://github.com/Abhishek-khati',
+    demo: '',
     presentation: '',
     featured: true,
-    color: '#4FFFA4',
-  },
-  {
-    id: 'forex-signal',
-    name: 'Forex Trading Signal AI Agent',
-    category: 'ML · Financial Analytics',
-    tagline: 'Signal classification experiments on currency-pair data.',
-    summary:
-      'An experimental project combining technical indicators, machine-learning classifiers, and risk-oriented visualizations for forex signal analysis.',
-    description: `This experimental project applies technical indicator computation, feature engineering, and machine-learning classifiers (Random Forest, XGBoost) to currency-pair price data. Results are visualized in Power BI for strategy exploration.`,
-    technologies: ['Python', 'Pandas', 'Scikit-learn', 'Random Forest', 'XGBoost', 'Power BI'],
-    highlights: [
-      'Technical indicator computation',
-      'Signal classification experiments',
-      'Currency-pair analysis',
-      'Risk and strategy visualizations',
+    color: '#00E5FF',
+    image: '/projects/bondiq-home-dashboard.png',
+    images: [
+      {
+        tabLabel: 'Home Dashboard',
+        title: 'BondIQ Executive Summary: Portfolio Value & Key Durations',
+        src: '/projects/bondiq-home-dashboard.png',
+        desc: 'Executive summary cockpit displaying Total Market Value (₹32,059,346), Modified Duration (4.203), Effective Duration (4.204), and Total DV01 (₹12,839.10) for institutional fixed-income risk monitoring.',
+      },
+      {
+        tabLabel: 'Portfolio Analysis',
+        title: 'Convexity Sensitivity Analysis: Yield Curve Shock Scenarios',
+        src: '/projects/bondiq-convexity-analysis.png',
+        desc: 'Interactive scenario modeling simulating rate shifts from -200 bps (+₹2,977,505 / +9.29%) to +200 bps (-₹2,412,476 / -7.53%), highlighting positive convexity gains under easing monetary policy.',
+      },
+      {
+        tabLabel: 'Risk Analysis',
+        title: 'Risk Analysis: Currency Allocations & Sector Spread Spreads',
+        src: '/projects/bondiq-risk-analysis.png',
+        desc: 'Multidimensional risk decomposition displaying global currency exposure (INR 78%, USD 10.7%, GBP, EUR, AUD, JPY) alongside sector credit ratings and Option-Adjusted Spreads (OAS) across Energy, Infra, Steel, and NBFC issuances.',
+      },
+      {
+        tabLabel: 'AI Assistant',
+        title: 'Hybrid Grok LLM + Rule-Based Portfolio Intelligence Assistant',
+        src: '/projects/bondiq-ai-assistant.png',
+        desc: 'Conversational risk analyst powered by Grok AI and SQLAlchemy SQLite database intelligence. Answers complex queries on portfolio duration, highest-risk sectors, and scenario sensitivities with instant fallback reliability.',
+      },
+      {
+        tabLabel: 'Predictions',
+        title: 'Predictive Portfolio Risk Scoring & ±50 bps Projections',
+        src: '/projects/bondiq-portfolio-predictions.png',
+        desc: 'Predictive analytics module projecting rate shocks (+50 bps: -₹656,090 / -2.05%, -50 bps: +₹691,405 / +2.16%) with an aggregate Portfolio Risk Score of 42/100.',
+      },
     ],
-    github: 'EDITABLE_GITHUB_URL',
-    demo: 'EDITABLE_DEMO_URL',
-    presentation: '',
-    featured: false,
-    color: '#FFB86C',
-    note: 'Experimental research project. Does not claim profitable strategies, predictive accuracy, or live trading performance.',
-  },
-  {
-    id: 'silver-analytics',
-    name: 'Silver Market Analytics Dashboard',
-    category: 'Market Data Analytics',
-    tagline: 'Trend analysis, volatility metrics, and forecast comparison for silver.',
-    summary:
-      'An analytical dashboard exploring silver-price trends, volatility, technical indicators, forecast comparisons, and macroeconomic context.',
-    description: `This project combines Python-based data processing, SQL storage, machine-learning price trend models, and a rich Power BI dashboard to analyze the silver commodities market — covering price trends, rolling volatility, drawdown metrics, and macroeconomic drivers.`,
-    technologies: ['Python', 'SQL', 'Power BI', 'DAX', 'HTML', 'CSS', 'JavaScript', 'Machine Learning'],
-    highlights: [
-      'Price trend analysis',
-      'Rolling volatility and drawdown metrics',
-      'Forecast model comparison',
-      'Market-driver exploration',
+    spotlightMetrics: [
+      { val: '₹32.06M', lbl: 'Portfolio Value' },
+      { val: '4.203', lbl: 'Modified Duration' },
+      { val: 'Grok LLM', lbl: 'Hybrid AI Assistant' },
     ],
-    github: 'EDITABLE_GITHUB_URL',
-    demo: 'EDITABLE_DEMO_URL',
-    presentation: '',
-    featured: false,
-    color: '#C0C0C0',
-    note: 'Analytics project. Results are for analytical exploration, not financial advice.',
+    spotlightArchitecture: [
+      'Python 3.11 & Streamlit front-end with interactive Plotly sensitivity charts',
+      'SQLAlchemy ORM data layer managing SQLite fixed-income database entities',
+      'Convexity & DV01 risk engine calculating non-linear parallel yield curve shifts',
+      'Hybrid Grok LLM integration with rule-based fallback for conversational risk analysis',
+    ],
   },
   {
     id: 'smart-crop-advisory',
@@ -444,7 +644,7 @@ By analyzing soil chemistry metrics alongside localized weather variables, the m
     github: 'https://github.com/Abhishek-khati',
     demo: '',
     presentation: '',
-    featured: true,
+    featured: false,
     color: '#10B981',
     note: 'Hackathon AgriTech prototype focused on data-driven agricultural decision making.',
   },
@@ -468,7 +668,7 @@ The platform provides live in-browser query execution, dynamic syntax feedback, 
     github: 'https://github.com/Abhishek-khati',
     demo: '',
     presentation: '',
-    featured: true,
+    featured: false,
     color: '#6366F1',
     note: 'Hackathon EdTech project demonstrating database pedagogy and browser execution sandboxing.',
   },

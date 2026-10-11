@@ -73,7 +73,9 @@ export default function Contact() {
           serviceId,
           templateId,
           {
+            name: form.name,
             from_name: form.name,
+            email: form.email,
             from_email: form.email,
             message: form.message,
             to_name: profile.name,
@@ -82,8 +84,12 @@ export default function Contact() {
           publicKey
         )
       } else {
-        // Fallback simulation when keys not yet configured in .env
-        await new Promise(r => setTimeout(r, 1200))
+        // Direct mailto fallback so messages never get lost
+        const subject = encodeURIComponent(`Portfolio Inquiry from ${form.name}`)
+        const body = encodeURIComponent(
+          `Hi Abhishek,\n\nName: ${form.name}\nEmail: ${form.email}\n\nMessage:\n${form.message}\n\n---\nSent from your portfolio website.`
+        )
+        window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`
       }
       setState({ status: 'success', error: '' })
       setForm({ name: '', email: '', message: '' })

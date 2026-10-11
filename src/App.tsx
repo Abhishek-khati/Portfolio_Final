@@ -11,6 +11,7 @@ import Certifications from './components/Certifications'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import CursorGlow from './components/CursorGlow'
+import BackToTop from './components/BackToTop'
 
 export default function App() {
   const { theme, toggle } = useTheme()
@@ -31,6 +32,7 @@ export default function App() {
         <Contact />
       </main>
       <Footer />
+      <BackToTop />
     </>
   )
 }

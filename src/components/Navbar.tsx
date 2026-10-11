@@ -49,6 +49,27 @@ export default function Navbar({ theme, onThemeToggle }: Props) {
     return () => obs.disconnect()
   }, [])
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [menuOpen])
+
+  // Auto-close menu if resized to desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 768) setMenuOpen(false)
+    }
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
   // Close menu on outside click
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
@@ -143,35 +164,57 @@ export default function Navbar({ theme, onThemeToggle }: Props) {
         </div>
       </div>
 
-      {/* Mobile drawer */}
+      {/* Mobile drawer with backdrop */}
       <AnimatePresence>
         {menuOpen && (
-          <motion.div
-            ref={menuRef}
-            className={styles.mobileMenu}
-            initial={{ opacity: 0, y: -16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -16 }}
-            transition={{ duration: 0.25, ease: 'easeOut' }}
-          >
-            {NAV_ITEMS.map((item, i) => (
-              <motion.a
-                key={item.href}
-                href={item.href}
-                className={`${styles.mobileLink} ${active === item.href.slice(1) ? styles.mobileLinkActive : ''}`}
-                onClick={e => { e.preventDefault(); handleNavClick(item.href) }}
-                initial={{ opacity: 0, x: -16 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.05 }}
+          <>
+            <motion.div
+              className={styles.backdrop}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => setMenuOpen(false)}
+              aria-hidden="true"
+            />
+            <motion.div
+              ref={menuRef}
+              className={styles.mobileMenu}
+              initial={{ opacity: 0, y: -20, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -16, scale: 0.98 }}
+              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <div className={styles.mobileLinksWrap}>
+                {NAV_ITEMS.map((item, i) => (
+                  <motion.a
+                    key={item.href}
+                    href={item.href}
+                    className={`${styles.mobileLink} ${active === item.href.slice(1) ? styles.mobileLinkActive : ''}`}
+                    onClick={e => { e.preventDefault(); handleNavClick(item.href) }}
+                    initial={{ opacity: 0, x: -12 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.04 }}
+                  >
+                    <span>{item.label}</span>
+                    {active === item.href.slice(1) && (
+                      <span className={styles.mobileActiveBadge}>Current</span>
+                    )}
+                  </motion.a>
+                ))}
+              </div>
+              <div className={styles.mobileDivider} />
+              <a
+                href={profile.resumeUrl}
+                download
+                className="btn btn-primary"
+                style={{ width: '100%', justifyContent: 'center' }}
+                onClick={() => setMenuOpen(false)}
               >
-                {item.label}
-              </motion.a>
-            ))}
-            <div className={styles.mobileDivider} />
-            <a href={profile.resumeUrl} download className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
-              Download Resume
-            </a>
-          </motion.div>
+                Download Resume PDF
+              </a>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </motion.header>

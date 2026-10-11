@@ -1,0 +1,45 @@
+.backToTop {
+  position: fixed;
+  bottom: max(1.5rem, env(safe-area-inset-bottom, 1.5rem));
+  right: max(1.25rem, env(safe-area-inset-right, 1.25rem));
+  z-index: 90;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1px solid var(--border-glow);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(92, 225, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, background 0.25s ease;
+  cursor: pointer;
+}
+
+[data-theme='light'] .backToTop {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12), 0 0 16px rgba(0, 112, 243, 0.15);
+}
+
+.backToTop:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 25px rgba(92, 225, 255, 0.3);
+  color: #FFFFFF;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+}
+
+.backToTop:active {
+  transform: translateY(0) scale(0.95);
+}
+
+@media (max-width: 480px) {
+  .backToTop {
+    width: 42px;
+    height: 42px;
+    bottom: max(1rem, env(safe-area-inset-bottom, 1rem));
+    right: max(1rem, env(safe-area-inset-right, 1rem));
+  }
+}

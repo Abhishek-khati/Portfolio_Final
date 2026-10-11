@@ -200,6 +200,12 @@ export default function About() {
                         <strong>Deliver Actionable Dashboards:</strong> Numbers only matter if stakeholders can act on them. I design visual interfaces with clear executive hierarchy.
                       </p>
                     </div>
+                    <div className={styles.principleItem}>
+                      <span className={styles.principleNum}>04</span>
+                      <p className={styles.principleText}>
+                        <strong>Relational Investigation & Deduction:</strong> Passionate about forensic problem-solving (e.g., solved the full SQL Murder Mystery investigation). I love connecting disparate schemas, cross-verifying clues, and writing complex CTEs/Window Functions to find the exact truth.
+                      </p>
+                    </div>
                   </motion.div>
                 )}
 
@@ -212,7 +218,7 @@ export default function About() {
                     transition={{ duration: 0.25 }}
                   >
                     <p className={styles.bio}>
-                      I am in my final year of BCA and actively looking for <strong>Junior Data Analyst</strong>, <strong>Data Science Intern</strong>, or <strong>AI/ML Engineering</strong> roles. I want to contribute to high-impact teams where I can write clean SQL pipelines, build automated analytical workflows, and learn alongside experienced professionals.
+                      I am in my final year of BCA and actively looking for <strong>Junior Data Analyst</strong>, <strong>Data Science Intern</strong>, or <strong>AI/ML Engineering</strong> roles. Driven by an intense hunger to grow in the tech field, I spend every week solving real database challenges, building predictive models, and pushing my engineering boundaries alongside passionate teams.
                     </p>
                   </motion.div>
                 )}
