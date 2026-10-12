@@ -52,6 +52,8 @@ export default function Skills() {
   const [activeCategory, setActiveCategory] = useState<string>('All')
   const [searchQuery, setSearchQuery] = useState('')
 
+  const [showAll, setShowAll] = useState(false)
+
   const categories = Object.keys(allSkills) as (keyof typeof allSkills)[]
 
   // Flatten skills with category info
@@ -74,6 +76,14 @@ export default function Skills() {
       return matchesCat && matchesSearch
     })
   }, [allFlattened, activeCategory, searchQuery])
+
+  // Visible skills to avoid overwhelming 20-card single-column scrolls on mobile
+  const visibleSkills = useMemo(() => {
+    if (activeCategory === 'All' && !searchQuery && !showAll) {
+      return filteredSkills.slice(0, 10)
+    }
+    return filteredSkills
+  }, [filteredSkills, activeCategory, searchQuery, showAll])
 
   return (
     <section id="skills" className={`section ${styles.skills}`} ref={ref}>
@@ -167,7 +177,7 @@ export default function Skills() {
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.3 }}
           >
-            {filteredSkills.map((skill, i) => {
+            {visibleSkills.map((skill, i) => {
               const projectRef = SKILL_PROJECT_MAP[skill.name]
               return (
                 <motion.div
@@ -224,6 +234,19 @@ export default function Skills() {
             })}
           </motion.div>
         </AnimatePresence>
+
+        {/* Expand / Collapse Button for All Category */}
+        {activeCategory === 'All' && !searchQuery && filteredSkills.length > 10 && (
+          <div style={{ textAlign: 'center', marginTop: '-1rem', marginBottom: '2.5rem' }}>
+            <button
+              className="btn btn-outline"
+              onClick={() => setShowAll(prev => !prev)}
+              style={{ fontSize: '0.84rem', padding: '0.55rem 1.4rem' }}
+            >
+              {showAll ? 'Show Fewer Skills (Top 10)' : `View All ${filteredSkills.length} Technical Skills`}
+            </button>
+          </div>
+        )}
 
         {/* Legend */}
         <motion.div

@@ -61,7 +61,7 @@ function GlassSphere({ isLight, isMobile }: { isLight: boolean; isMobile: boolea
     }
   })
 
-  const sphereRadius = isMobile ? 1.2 : 1.35
+  const sphereRadius = isMobile ? 1.15 : 1.35
   const segments = isMobile ? 40 : 64
 
   return (
@@ -210,8 +210,8 @@ function OrbitalRings({ isLight, isMobile }: { isLight: boolean; isMobile: boole
     }
   })
 
-  const r1 = isMobile ? 2.2 : 2.7
-  const r2 = isMobile ? 2.8 : 3.5
+  const r1 = isMobile ? 1.85 : 2.7
+  const r2 = isMobile ? 2.35 : 3.5
 
   return (
     <>
@@ -319,7 +319,7 @@ export default function HeroScene() {
   return (
     <Suspense fallback={<StaticFallback isLight={isLight} />}>
       <Canvas
-        camera={{ position: [0, 0, isMobile ? 7.6 : 7.2], fov: 50 }}
+        camera={{ position: [0, 0, isMobile ? 5.4 : 7.2], fov: 50 }}
         dpr={[1, isMobile ? 1.4 : 1.75]}
         style={{ background: 'transparent' }}
         gl={{ antialias: true, alpha: true }}

@@ -20,9 +20,11 @@
   }
 }
 
-@media (max-width: 540px) {
+@media (max-width: 480px) {
   .pipelineBanner {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    padding: 0.85rem;
   }
 }
 
@@ -291,26 +293,63 @@
     flex-shrink: 0;
   }
   .grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.85rem;
-  }
-}
-
-@media (max-width: 500px) {
-  .grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.75rem;
   }
   .card {
-    padding: 1rem;
+    padding: 0.9rem 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.55rem;
+    margin-bottom: 2rem;
+  }
+  .card {
+    padding: 0.75rem 0.65rem;
+    border-radius: 12px;
+    gap: 0.55rem;
+  }
+  .skillName {
+    font-size: 0.84rem;
+  }
+  .meterBlock {
+    width: 9px;
+    height: 3px;
+  }
+  .cardFooter {
+    font-size: 0.68rem;
+    gap: 0.3rem;
+    padding-top: 0.45rem;
   }
   .pipelineBanner {
-    padding: 1rem;
-    gap: 0.85rem;
+    padding: 0.85rem;
+    gap: 0.7rem;
+    margin-bottom: 1.8rem;
+  }
+  .pipelineStep {
+    gap: 0.2rem;
+  }
+  .stepTitle {
+    font-size: 0.78rem;
+  }
+  .stepTools {
+    font-size: 0.68rem;
+    line-height: 1.35;
   }
   .legend {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem;
+  }
+}
+
+@media (max-width: 340px) {
+  .grid {
+    grid-template-columns: 1fr;
     gap: 0.6rem;
   }
 }

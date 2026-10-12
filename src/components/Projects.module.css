@@ -98,6 +98,11 @@
   max-width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.featuredSwitcher::-webkit-scrollbar {
+  display: none;
 }
 
 .featuredSwitchBtn {
@@ -666,6 +671,14 @@
   }
 }
 
+@media (max-width: 1100px) and (min-width: 981px) {
+  .featuredSpotlight {
+    gap: 1.8rem;
+    padding: 1.8rem;
+    grid-template-columns: 1.15fr 0.85fr;
+  }
+}
+
 @media (max-width: 980px) {
   .featuredSpotlight {
     grid-template-columns: 1fr;
@@ -675,6 +688,34 @@
 }
 
 @media (max-width: 640px) {
+  .featuredHeaderRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.65rem;
+  }
+  .featuredSwitcher {
+    width: 100%;
+  }
+  .featuredSpotlight {
+    padding: 1.25rem 1rem;
+    border-radius: 16px;
+    gap: 1.25rem;
+  }
+  .spotlightMetrics {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.45rem;
+    padding: 0.75rem 0.5rem;
+    text-align: center;
+  }
+  .spotlightMetricVal {
+    font-size: 0.96rem;
+  }
+  .spotlightMetricLbl {
+    font-size: 0.62rem;
+  }
+  .spotlightImgBox {
+    height: 160px;
+  }
   .filterBar {
     width: 100%;
     border-radius: 14px;
@@ -693,10 +734,14 @@
   }
   .grid {
     grid-template-columns: 1fr;
+    gap: 1.25rem;
   }
-  .spotlightMetrics {
-    grid-template-columns: 1fr;
+  .cardBody {
+    padding: 1.25rem 1rem;
     gap: 0.75rem;
+  }
+  .imageWrapper {
+    height: 160px;
   }
   .spotlightActions > * {
     width: 100%;

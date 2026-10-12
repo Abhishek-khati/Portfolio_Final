@@ -326,12 +326,26 @@
 
 @media (max-width: 640px) {
   .metricGrid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.6rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.45rem;
+  }
+  .metricBox {
+    padding: 0.5rem 0.45rem;
+    text-align: center;
+  }
+  .metricVal {
+    font-size: 0.95rem;
+  }
+  .metricLbl {
+    font-size: 0.62rem;
   }
   .querySide,
   .resultSide {
     padding: 1rem;
+  }
+  .codeBox {
+    max-height: 210px;
+    font-size: 0.76rem;
   }
   .terminalHeader {
     padding: 0.75rem 1rem;
@@ -346,8 +360,12 @@
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 380px) {
   .metricGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.35rem;
+  }
+  .metricVal {
+    font-size: 0.88rem;
   }
 }
