@@ -1,4 +1,4 @@
-import { useRef, useState, useMemo } from 'react'
+import { useRef, useState, useMemo, useEffect } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { ExternalLink, Github, X, ArrowRight, Sparkles, Layers, CheckCircle2 } from 'lucide-react'
 import { projects } from '../data/portfolio'
@@ -123,6 +123,14 @@ function CaseStudyModal({
   const [activeImageIdx, setActiveImageIdx] = useState(0)
   const hasGithub = project.github && !project.github.startsWith('EDITABLE')
   const hasDemo = project.demo && !project.demo.startsWith('EDITABLE')
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose()
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [onClose])
 
   return (
     <AnimatePresence>

@@ -20,6 +20,22 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <!-- Theme Colors -->
+    <meta name="theme-color" content="#06080F" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#F8FAFD" media="(prefers-color-scheme: light)" />
+    <!-- Prevent theme flash on initial load -->
+    <script>
+      (function() {
+        try {
+          var t = localStorage.getItem('theme');
+          if (t === 'light' || t === 'dark') {
+            document.documentElement.setAttribute('data-theme', t);
+          } else {
+            document.documentElement.setAttribute('data-theme', 'dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
     <title>Abhishek Khati — Data Analytics · AI · Technology</title>
   </head>
   <body>

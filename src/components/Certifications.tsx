@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { Award, ShieldCheck, CheckCircle2, BookOpen, Sparkles, ExternalLink, X, ZoomIn } from 'lucide-react'
 import styles from './Certifications.module.css'
@@ -166,6 +166,15 @@ export default function Certifications() {
   const inView = useInView(ref, { once: true, margin: '-80px' })
   const [filter, setFilter] = useState('All')
   const [selectedCert, setSelectedCert] = useState<CredentialItem | null>(null)
+
+  useEffect(() => {
+    if (!selectedCert) return
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setSelectedCert(null)
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [selectedCert])
 
   const categories = ['All', 'Certifications & Courses', 'Hackathons', 'Academics']
 
