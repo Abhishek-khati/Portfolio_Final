@@ -26,7 +26,7 @@ export const profile = {
   // Profile photo: Place your image in the /public folder
   avatarUrl: '/profile_photo.jpeg',
   // Path to your resume PDF in /public folder
-  resumeUrl: '/DATA_ANALYST_RESUME_AK.pdf',
+  resumeUrl: '/Data_Analyst_Resume_AK47.pdf',
 }
 
 export const skills = {
