@@ -114,11 +114,11 @@
 }
 
 @media (max-width: 480px) {
-  .item { grid-template-columns: 36px 1fr; gap: 0.85rem; }
-  .node { width: 36px; height: 36px; margin-top: 0.8rem; }
+  .item { grid-template-columns: 36px minmax(0, 1fr); gap: 0.85rem; width: 100%; }
+  .node { width: 36px; height: 36px; margin-top: 0.8rem; flex-shrink: 0; }
   .nodeIcon { font-size: 1.05rem; }
   .connector { left: 17px; top: 44px; }
-  .content { padding: 1rem 0.95rem; margin-bottom: 1.25rem; border-radius: 14px; }
-  .milestoneTitle { font-size: 0.95rem; }
-  .milestoneDetail { font-size: 0.84rem; line-height: 1.6; }
+  .content { padding: 1rem 0.95rem; margin-bottom: 1.25rem; border-radius: 14px; min-width: 0; width: 100%; box-sizing: border-box; }
+  .milestoneTitle { font-size: 0.95rem; overflow-wrap: break-word; word-break: break-word; }
+  .milestoneDetail { font-size: 0.84rem; line-height: 1.6; overflow-wrap: break-word; word-break: break-word; }
 }

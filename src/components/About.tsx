@@ -251,7 +251,7 @@ export default function About() {
                     <div className={styles.strengthIcon}>
                       <Icon size={19} />
                     </div>
-                    <div>
+                    <div className={styles.strengthCardContent}>
                       <h4 className={styles.strengthTitle}>{st.title}</h4>
                       <p className={styles.strengthDesc}>{st.desc}</p>
                     </div>
@@ -261,7 +261,7 @@ export default function About() {
             </motion.div>
 
             <motion.div variants={fadeUp(0.5)} initial="hidden" animate={inView ? 'visible' : 'hidden'}>
-              <button className="btn btn-outline" onClick={scrollToContact}>
+              <button className={`btn btn-outline ${styles.contactBtn}`} onClick={scrollToContact}>
                 <span>Get In Touch For Collaborations</span>
                 <ArrowRight size={15} />
               </button>

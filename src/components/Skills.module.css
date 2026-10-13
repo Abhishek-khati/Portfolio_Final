@@ -1,5 +1,8 @@
 .skills {
   position: relative;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .pipelineBanner {
@@ -9,22 +12,25 @@
   padding: 1.4rem 1.6rem;
   margin-bottom: 2.5rem;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1rem;
   position: relative;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 @media (max-width: 900px) {
   .pipelineBanner {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 580px) {
   .pipelineBanner {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
-    padding: 0.85rem;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.85rem;
+    padding: 1rem 0.9rem;
+    border-radius: 14px;
   }
 }
 
@@ -33,12 +39,14 @@
   flex-direction: column;
   gap: 0.3rem;
   position: relative;
+  min-width: 0;
 }
 
 .pipelineHeader {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  min-width: 0;
 }
 
 .stepNum {
@@ -49,6 +57,7 @@
   background: var(--primary-dim);
   padding: 0.15rem 0.45rem;
   border-radius: 4px;
+  flex-shrink: 0;
 }
 
 .stepTitle {
@@ -56,12 +65,18 @@
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--text);
+  overflow-wrap: break-word;
+  word-break: break-word;
+  min-width: 0;
 }
 
 .stepTools {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   color: var(--muted);
+  overflow-wrap: break-word;
+  word-break: break-word;
+  line-height: 1.4;
 }
 
 .controlsBar {
@@ -71,12 +86,16 @@
   gap: 1.2rem;
   margin-bottom: 2rem;
   flex-wrap: wrap;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .searchWrap {
   position: relative;
-  min-width: 260px;
+  width: 100%;
   max-width: 380px;
+  min-width: 0;
   flex: 1;
 }
 
@@ -263,7 +282,7 @@
 
 @media (max-width: 1140px) {
   .grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -272,14 +291,18 @@
     flex-direction: column;
     align-items: stretch;
     gap: 0.85rem;
+    width: 100%;
   }
   .searchWrap {
-    min-width: 100%;
+    width: 100%;
+    min-width: 0;
     max-width: 100%;
   }
   .tabs {
     border-radius: 12px;
     width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
     overflow-x: auto;
     flex-wrap: nowrap;
     -webkit-overflow-scrolling: touch;
@@ -295,9 +318,13 @@
   .grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.75rem;
+    width: 100%;
   }
   .card {
     padding: 0.9rem 0.85rem;
+    min-width: 0;
+    width: 100%;
+    box-sizing: border-box;
   }
 }
 
