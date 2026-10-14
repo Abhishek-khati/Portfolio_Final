@@ -36,7 +36,7 @@ Edit `.env` to add your EmailJS keys if you want the contact form to send real e
 Resume PDF is placed at:
 
 ```
-public/Data_Analyst_Resume_AK47.pdf
+public/Abhishek_resume_Ak47.pdf
 ```
 
 ### 4. Update your personal info
@@ -105,7 +105,7 @@ src/
   App.tsx
   main.tsx
 public/
-  Data_Analyst_Resume_AK47.pdf  # Actual verified resume
+  Abhishek_resume_Ak47.pdf  # Actual verified resume
   favicon.svg
 ```
 
