@@ -463,7 +463,6 @@ The suite features 5 comprehensive Power BI dashboard pages:
     presentation: '',
     featured: false,
     color: '#1DB954',
-    image: '/projects/spotify-sql.png',
   },
   {
     id: 'retail-sales-sql',
